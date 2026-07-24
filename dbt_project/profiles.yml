@@ -1,0 +1,7 @@
+dw_lab1:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./dev.duckdb
+      threads: 1

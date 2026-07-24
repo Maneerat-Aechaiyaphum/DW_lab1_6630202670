@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: northwind # The name of the source, used to reference this source in dbt models
+    schema: main # The schema(dataset name) to which the source belongs. main is the default schema for DuckDB
+    description: "Raw flat files queried directly from the local workspace folder"
+    meta: # Additional metadata for the source
+      # {name} is a placeholder that automatically injects the table names listed below
+      external_location: '../datasets/{name}.csv'
+    tables:
+      - name: customer              # Maps straight to datasets/customer.csv
+        description: "Customer data from the Northwind dataset"
+      - name: products              # Maps straight to datasets/products.csv
+        description: "Products data from the Northwind dataset"
+      - name: employees              # Maps straight to datasets/employees.csv
+        description: "Employees data from the Northwind dataset"
+      - name: employee_privileges             # Maps straight to datasets/employee_privileges.csv
+        description: "Employee privileges data from the Northwind dataset"
+      - name: inventory_transaction_types           # Maps straight to datasets/inventory_transaction_types.csv
+        description: "Inventory transaction types data from the Northwind dataset"
+      - name: inventory_transactions             # Maps straight to datasets/inventory_transactions.csv
+        description: "Inventory transactions data from the Northwind dataset"
+      - name: invoices              # Maps straight to datasets/invoices.csv
+        description: "Invoices data from the Northwind dataset"
+      - name: order_details_status             # Maps straight to datasets/order_details_status.csv
+        description: "Order details status data from the Northwind dataset"
+      - name: order_details            # Maps straight to datasets/order_details.csv
+        description: "Order details data from the Northwind dataset"
+      - name: orders_status            # Maps straight to datasets/orders_status.csv
+        description: "Orders status data from the Northwind dataset"
+      - name: orders_tax_status # Maps straight to datasets/orders_tax_status.csv
+        description: "Orders tax status data from the Northwind dataset"
+      - name: orders            # Maps straight to datasets/orders.csv  
+        description: "Orders data from the Northwind dataset"
+      - name: privileges           # Maps straight to datasets/orders.csv  
+        description: "Privileges  data from the Northwind dataset"
+      - name: products           # Maps straight to datasets/orders.csv  
+        description: "Products data from the Northwind dataset"
+      - name: purchase_order_details           # Maps straight to datasets/orders.csv  
+        description: "Purchase order details data from the Northwind dataset" 
+      - name: purchase_order_status         # Maps straight to datasets/orders.csv  
+        description: "Purchase order details data from the Northwind dataset"
+      - name: purchase_orders         # Maps straight to datasets/orders.csv  
+        description: "Purchase order data from the Northwind dataset" 
+      - name: sales_reports         # Maps straight to datasets/orders.csv  
+        description: "Sales reports data from the Northwind dataset" 
+      - name: shippers        # Maps straight to datasets/orders.csv  
+        description: "Shippers data from the Northwind dataset" 
+      - name: strings        # Maps straight to datasets/orders.csv  
+        description: "Sales data from the Northwind dataset" 
+      - name: strings        # Maps straight to datasets/orders.csv  
+        description: "Strings data from the Northwind dataset" 
+      
+          
