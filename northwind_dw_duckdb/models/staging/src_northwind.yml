@@ -6,8 +6,9 @@ sources:
     description: "Raw flat files queried directly from the local workspace folder"
     meta: # Additional metadata for the source
       # {name} is a placeholder that automatically injects the table names listed below
-      # Use absolute path based on the current working directory so DuckDB can find files.
-      external_location: "{{ env_var('PWD') }}/datasets/{name}.csv"
+      # Use absolute path based on the project root so DuckDB can find files.
+      # datasets are located at the repository root `/workspaces/DW_lab1_6630202670/datasets`.
+      external_location: "{{ env_var('PWD') }}/../datasets/{name}.csv"
     tables:
       - name: customer
         description: "Customer data from the Northwind dataset"
@@ -47,6 +48,9 @@ sources:
         description: "Shippers data from the Northwind dataset"
       - name: suppliers
         description: "Suppliers data from the Northwind dataset"
+
+      - name: strings
+        description: "Strings data from the Northwind dataset"
 
       
           
