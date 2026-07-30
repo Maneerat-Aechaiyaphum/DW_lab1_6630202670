@@ -6,49 +6,47 @@ sources:
     description: "Raw flat files queried directly from the local workspace folder"
     meta: # Additional metadata for the source
       # {name} is a placeholder that automatically injects the table names listed below
-      external_location: '../datasets/{name}.csv'
+      # Use absolute path based on the current working directory so DuckDB can find files.
+      external_location: "{{ env_var('PWD') }}/datasets/{name}.csv"
     tables:
-      - name: customer              # Maps straight to datasets/customer.csv
+      - name: customer
         description: "Customer data from the Northwind dataset"
-      - name: products              # Maps straight to datasets/products.csv
+      - name: products
         description: "Products data from the Northwind dataset"
-      - name: employees              # Maps straight to datasets/employees.csv
+      - name: employees
         description: "Employees data from the Northwind dataset"
-      - name: employee_privileges             # Maps straight to datasets/employee_privileges.csv
+      - name: employee_privileges
         description: "Employee privileges data from the Northwind dataset"
-      - name: inventory_transaction_types           # Maps straight to datasets/inventory_transaction_types.csv
+      - name: inventory_transaction_types
         description: "Inventory transaction types data from the Northwind dataset"
-      - name: inventory_transactions             # Maps straight to datasets/inventory_transactions.csv
+      - name: inventory_transactions
         description: "Inventory transactions data from the Northwind dataset"
-      - name: invoices              # Maps straight to datasets/invoices.csv
+      - name: invoices
         description: "Invoices data from the Northwind dataset"
-      - name: order_details_status             # Maps straight to datasets/order_details_status.csv
+      - name: order_details_status
         description: "Order details status data from the Northwind dataset"
-      - name: order_details            # Maps straight to datasets/order_details.csv
+      - name: order_details
         description: "Order details data from the Northwind dataset"
-      - name: orders_status            # Maps straight to datasets/orders_status.csv
+      - name: orders_status
         description: "Orders status data from the Northwind dataset"
-      - name: orders_tax_status # Maps straight to datasets/orders_tax_status.csv
+      - name: orders_tax_status
         description: "Orders tax status data from the Northwind dataset"
-      - name: orders            # Maps straight to datasets/orders.csv  
+      - name: orders
         description: "Orders data from the Northwind dataset"
-      - name: privileges           # Maps straight to datasets/orders.csv  
-        description: "Privileges  data from the Northwind dataset"
-      - name: products           # Maps straight to datasets/orders.csv  
-        description: "Products data from the Northwind dataset"
-      - name: purchase_order_details           # Maps straight to datasets/orders.csv  
-        description: "Purchase order details data from the Northwind dataset" 
-      - name: purchase_order_status         # Maps straight to datasets/orders.csv  
+      - name: privileges
+        description: "Privileges data from the Northwind dataset"
+      - name: purchase_order_details
         description: "Purchase order details data from the Northwind dataset"
-      - name: purchase_orders         # Maps straight to datasets/orders.csv  
-        description: "Purchase order data from the Northwind dataset" 
-      - name: sales_reports         # Maps straight to datasets/orders.csv  
-        description: "Sales reports data from the Northwind dataset" 
-      - name: shippers        # Maps straight to datasets/orders.csv  
-        description: "Shippers data from the Northwind dataset" 
-      - name: strings        # Maps straight to datasets/orders.csv  
-        description: "Sales data from the Northwind dataset" 
-      - name: strings        # Maps straight to datasets/orders.csv  
-        description: "Strings data from the Northwind dataset" 
+      - name: purchase_order_status
+        description: "Purchase order status data from the Northwind dataset"
+      - name: purchase_orders
+        description: "Purchase orders data from the Northwind dataset"
+      - name: sales_reports
+        description: "Sales reports data from the Northwind dataset"
+      - name: shippers
+        description: "Shippers data from the Northwind dataset"
+      - name: suppliers
+        description: "Suppliers data from the Northwind dataset"
+
       
           
