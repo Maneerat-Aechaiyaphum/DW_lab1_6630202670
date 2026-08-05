@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/workspaces/DW_lab1_6630202670/.venv/bin/python
+=======
+#!/workspaces/DW_lab1_6630202670/.venv/bin/python3
+>>>>>>> dw_duckdb
 # -*- coding: utf-8 -*-
 import re
 import sys
