@@ -19,12 +19,12 @@ SELECT
     notes,
     attachments,
     current_localtimestamp() as insertion_timestamp
-FROM {{ ref('stg_customers') }}
+FROM {{ ref('stg_employees') }}
 ),
 
 unique_source AS (
     SELECT *,
-            row_number() OVER(PARTITION BY customer_id) AS row_num
+            row_number() OVER(PARTITION BY employee_id) AS row_num
     FROM source
 )
 

@@ -19,7 +19,7 @@ SELECT
     notes,
     attachments,
     current_localtimestamp() as insertion_timestamp
-FROM {{ ref('stg_customers') }}
+FROM {{ ref('stg_customer') }}
 ),
 
 unique_source AS (

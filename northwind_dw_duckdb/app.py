@@ -10,8 +10,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+from pathlib import Path
+
 # Connect to database
-DB_PATH = "northwindDW_duckdb/dev.duckdb"
+BASE_DIR = Path(__file__).resolve().parent
+DB_PATH = BASE_DIR / "dev.duckdb"
 
 @st.cache_resource
 def get_connection():
@@ -43,7 +46,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">📊 Northwind DW Explorer</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">📊 Northwind DW Explorer(Maneerat Aechaiyaphum)</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Inspect and preview raw datasets, staging tables, and dimension views in dev.duckdb</div>', unsafe_allow_html=True)
 
 # Fetch all tables
@@ -64,6 +67,15 @@ else:
    
     # Sidebar
     st.sidebar.title("🗂️ Table Browser")
+    st.sidebar.write("Upload a CSV file to preview its contents.")
+    uploaded_file = st.sidebar.file_uploader("Attach a CSV file", type=["csv"])
+    uploaded_df = None
+    if uploaded_file is not None:
+        try:
+            uploaded_df = pd.read_csv(uploaded_file)
+        except Exception as e:
+            st.sidebar.error(f"Could not read uploaded file: {e}")
+
     selected_table = st.sidebar.selectbox("Select a table to inspect", tables)
    
     st.sidebar.markdown("---")
@@ -114,6 +126,19 @@ else:
             )
            
         with col2:
+            if uploaded_df is not None:
+                st.subheader(f"Uploaded File: {uploaded_file.name}")
+                st.markdown(f"- **Rows**: `{len(uploaded_df):,}`")
+                st.markdown(f"- **Columns**: `{uploaded_df.shape[1]}`")
+                st.dataframe(uploaded_df.head(100), use_container_width=True, hide_index=True)
+                st.download_button(
+                    label="📥 Download uploaded file as CSV",
+                    data=uploaded_df.to_csv(index=False).encode('utf-8'),
+                    file_name=f"uploaded_{uploaded_file.name}",
+                    mime="text/csv"
+                )
+                st.markdown("---")
+
             st.write("**Data Preview (First 100 rows)**")
             data_df = run_query(f"SELECT * FROM main.{selected_table} LIMIT 100")
             st.dataframe(data_df, use_container_width=True, hide_index=True)
